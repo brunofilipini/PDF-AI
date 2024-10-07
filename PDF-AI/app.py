@@ -16,7 +16,7 @@ import os
 
 response = requests.get(
     'https://api-inference.huggingface.co/models/google/flan-t5-large',
-    headers={'Authorization': f'Bearer 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'},
+    headers={'Authorization': f'YOUR_KEY'},
     verify=False
 )
 
@@ -42,7 +42,7 @@ def get_vectorstore(text_chunks):
     return FAISS.from_texts(texts=text_chunks, embedding=embeddings)
 
 def get_conversation_chain(vectorstore):
-    llm = HuggingFaceHub(repo_id="google/flan-t5-large", huggingfacehub_api_token='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')
+    llm = HuggingFaceHub(repo_id="google/flan-t5-large", huggingfacehub_api_token='YOUR_KEY')
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
